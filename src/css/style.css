@@ -1,0 +1,110 @@
+body {
+    background-color: #edecec;
+}
+.calculator {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    /*
+    background-color: rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: scaleX(1.1) scaleY(1.1);
+    transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+    */
+    font-family: sans-serif;
+}
+
+.calculator-body {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    width: 300px;
+    border-radius: 4px;
+    padding-bottom: 10px;
+}
+.calculator-content {
+    padding: 1rem 1rem 0 1rem;  
+}
+.calculator-actions {
+    padding: 0 1rem 0.5rem 1rem;  
+}
+.calculator-hr {
+    display: block !important;
+    border-style: none;
+    border-top-style: solid;
+    color: lightgray;
+}
+@media (min-width: 768px) {
+  .calculator-body {
+    -webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5);
+    box-shadow: 0 5px 15px rgba(0,0,0,.3);
+    width: 500px;
+  }
+}
+
+.calculator-settings-btn {
+    position: absolute;
+    top: 4px;
+    right: 8px;
+    width: 1.5rem;
+    height: 1.5rem;
+    line-height: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+@media only screen and (max-width: 50rem) {
+    h1 {
+        font-size: 1.5rem;
+    }
+    .modal-content {
+        width: calc(100% - 5rem);
+    }
+}
+
+.pay-container {
+    display: block;
+}
+
+.total-content {
+    left: 0;
+    background-color: black;
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+    color: white;
+    margin-left: -11px;
+    margin-right: -11px;
+    padding: 10px;
+    text-align: center;
+    min-height: 115px;
+}
+
+.total-content > div.caption {
+    font-size: 5rem;
+}
+
+.total-content > div.subcaption {
+    color: #aaa;
+}
+
+.total-content > div.error {
+    color: #dd0000;
+    display: none;
+}
+
+h3.title {
+    text-align: center;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
+.btn {
+    min-height: 40px;
+}
