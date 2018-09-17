@@ -70,26 +70,28 @@ PayCalculator.prototype.calc = function(startTime, endTime, bedtime) {
         hours: {}
     };
 
-    // validate the pay settings
-
-
     // validate the passed in times
+    var validationResult = this.validateHours(startTime, endTime, bedtime);
+    if (!validationResult.success) {
+        result.success = false;
+        result.message = validationResult.message;
+    } else {
+        // calculate the hours for each range
+        var hours = this.calcHours(startTime, endTime, bedtime);
 
+        // Calculate the pay
+        result.pay = (hours.startToBedtime * this.calcConfig.payRate.startToBedtime) +
+                    (hours.bedTimeToMidnight * this.calcConfig.payRate.bedTimeToMidnight) +
+                    (hours.midnightToEnd * this.calcConfig.payRate.midnightToEnd);
+        
+        result.message = hours.startToBedtime + 'h@$' + this.calcConfig.payRate.startToBedtime + ' +  ' + 
+                        hours.bedTimeToMidnight + 'h@$' + this.calcConfig.payRate.bedTimeToMidnight + ' + ' + 
+                        hours.midnightToEnd + 'h@$' + this.calcConfig.payRate.midnightToEnd;
 
-    // calculate the hours for each range
-    var hours = this.calcHours(startTime, endTime, bedtime);
+        result.success = true;
+        result.hours = hours;
+    }
 
-    // Calculate the pay
-    result.pay = (hours.startToBedtime * this.calcConfig.payRate.startToBedtime) +
-                 (hours.bedTimeToMidnight * this.calcConfig.payRate.bedTimeToMidnight) +
-                 (hours.midnightToEnd * this.calcConfig.payRate.midnightToEnd);
-    
-    result.message = hours.startToBedtime + 'h@$' + this.calcConfig.payRate.startToBedtime + ' +  ' + 
-                    hours.bedTimeToMidnight + 'h@$' + this.calcConfig.payRate.bedTimeToMidnight + ' + ' + 
-                    hours.midnightToEnd + 'h@$' + this.calcConfig.payRate.midnightToEnd;
-
-    result.success = true;
-    result.hours = hours;
     return result;
 }
 
