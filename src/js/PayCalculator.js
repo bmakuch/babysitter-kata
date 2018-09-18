@@ -43,8 +43,10 @@ function PayCalculator(config) {
 PayCalculator.prototype.validateHours = function(startTime, endTime, bedtime) {
     var success = true;
     var message = '';
+
+    var hours = this.normalizeTimeToHours(startTime, endTime, bedtime)
     
-    if (endTime < startTime) {
+    if (hours.normalizedEndTime < hours.normalizedStartTime) {
         success = false;
         message = 'End time cannot be earler than start time.';
     }
